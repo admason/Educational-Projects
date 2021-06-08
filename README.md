@@ -1,9 +1,9 @@
-#### Mathplug_App
+# Mathplug_App
 Code for embedding into a Mathematics learning App
-### Multiplication.
-## This code will ask the student to input two values and ask for their solution.
-## If the student's solution is within 10%, the response is more positive than if the student's solution is out by over 50%
-## The feedback from the code will ONLY return the real solution when the student is correct.
+## Multiplication.
+### This code will ask the student to input two values and ask for their solution.
+### If the student's solution is within 10%, the response is more positive than if the student's solution is out by over 50%
+### The feedback from the code will ONLY return the real solution when the student is correct.
 
 ```
 # Multiplication Function ~ soft wired solution
@@ -12,6 +12,7 @@ Code for embedding into a Mathematics learning App
 # to within 50% with "Not quite, try again"
 # to within 10% with "Very close, try again"
 
+# Interactive input code:
 a = int(input("First number in multiplication?: "))
 b = int(input("Second number in multiplication?: "))
 solution = int(input("What is the product of these two numbers? "))
