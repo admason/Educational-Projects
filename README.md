@@ -167,3 +167,65 @@ canvas1.create_window(300,200,window=button5)
 #######################################################################
 root.mainloop()
 ```
+
+
+## 3 MathsPlug Arithmetic Tester (Random Questions)
+### This code will challenge the student with sets of randomly genorated questions.
+### A choice for the quantity of questions is provided.
+### When all the questions are completed, the code will output the number of questions answered correctly.
+
+### An exmaple output from a set of five questions will appear as follows:
+
+#### number of questions?5
+#### 5 + 1 = 6
+####  Correct
+
+####  8 - 7 = 4
+#### Not quite
+
+#### 2 + 9 = 11
+#### Correct
+
+#### 5 + 2 = 6
+#### Not quite
+
+#### 8 - 8 = 0
+#### Correct
+
+#### your score is 3 out of 5
+
+```
+# MathsPlug Random Arithmetic
+
+import random
+# set up score as zero
+score = 0
+# dictionary initialised
+questions = {}
+
+# Generate questions with randomly picked number between 1 and 10
+a = 0 #int(input("lower bound: "))
+b = 10 #int(input("upperbound: "))
+c = int(input("number of questions?"))
+
+for i in range(c):
+    operand_a = random.randint(a,b)
+    operand_b = random.randint(a,b)
+    operators = ['+','-','*']
+    operator_type = random.choice(operators)
+    question = str(operand_a)+" "+operator_type+" "+str(operand_b)
+    solution = str(eval(question))
+    question+=" = "
+# contributes to the dictionary of questions
+    questions.update({question:solution})
+    
+    
+for q in questions.keys():
+    student_sol=input(q)
+    if questions.get(q)==student_sol:
+        print("Correct")
+        score +=1
+    else:
+        print("Not quite")
+print("your score is " +str(score) + " out of "+str(c))
+```
