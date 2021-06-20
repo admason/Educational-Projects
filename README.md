@@ -1,5 +1,5 @@
 # Mathplug_App:  Built on Python 3, Jupyter notebook.
-## Code for embedding into a Mathematics learning App
+## 1. Code for embedding into a Mathematics learning App
 ### Multiplication.
 #### This code will ask the student to input two values and ask for their solution.
 #### If the student's solution is within 10%, the response is more positive than if the student's solution is out by over 50%
@@ -51,3 +51,119 @@ print(ifsol(y))
 ### For the student's solution is 70, then the response is "Not Quite, try again."
 ### For the student's solution of 90, the response is "Very close, try again."
 ### Whereas for the correct solution (100) will give the response "Correct, 10 x 10  is  100", finally providing the real solution.
+
+
+## 2. MathsPlug_Arithmetic_App GUI
+## Built with Jupyter 3, tKinters
+### A basic app for entering teo integers and obtain the result of using those integers as the operands for addition, subtraction, multiplication and division operation.
+### The checking code is under construction/
+
+### The student may enter their integers into boxes, by clicking on the +, x, /, -  buttons will reveal the true solutions
+
+[![arithmetic-app.jpg](https://i.postimg.cc/ZqxJ6z62/arithmetic-app.jpg)](https://postimg.cc/94z3jS8Y)
+
+
+
+```
+### Arithmetic App GUI
+
+from tkinter import Tk, Label, Entry, StringVar
+import math as m
+import tkinter as tk
+
+root = tk.Tk()
+
+label=Label(root,text="Welcome to the MathPlug Arithmetic App")
+label.pack(pady=10)
+#############################################################
+#STEP 1: Create the canvas
+canvas1 = tk.Canvas(root, width=600, height = 300)
+canvas1.pack()
+##########################################################
+#STEP 2: Add the entry boxes
+entry1 = tk.Entry(root)
+canvas1.create_window(160, 20, window=entry1)
+
+entry2 = tk.Entry(root)
+canvas1.create_window(400,20,window=entry2)
+
+entry3 = tk.Entry(root)
+canvas1.create_window(160,200,window=entry3)
+
+
+# Create respective labels for entry 1,2,3
+field0 = tk.Label(text=('Enter Numbers'))           
+canvas1.create_window(40,20, window=field0)
+
+field1 = tk.Label(text=('Sum = '))           
+canvas1.create_window(400,20, window=field1)
+
+field2 = tk.Label(text=('Product = '))           
+canvas1.create_window(400,50, window=field2)
+
+field3 = tk.Label(text='Quotient = ')
+canvas1.create_window(400,80,window=field3)
+
+field4 = tk.Label(text='Quotient = ')
+canvas1.create_window(400,110,window=field4)
+
+field5 = tk.Label(text='Your Solution:')
+canvas1.create_window(40,200, window=field5)
+
+# Arithmetic Functions
+
+def get_Sum():
+    x1 = entry1.get()
+    x2 = entry2.get()
+    label_sum = tk.Label(root, text=(round(float(x1)+float(x2))))
+    canvas1.create_window(425,20,window=label_sum)  
+def get_Product():
+    x1 = entry1.get()
+    x2 = entry2.get()
+    label_prod = tk.Label(root, text=(round(float(x1)*float(x2))))
+    canvas1.create_window(435,50,window=label_prod)
+    
+def get_Quot():
+    x1 = entry1.get()
+    x2 = entry2.get()
+    label_sub = tk.Label(root, text = (round(float(x1)/float(x2))))
+    canvas1.create_window(435,80,window=label_sub)
+    
+def get_Sub():
+    x1 = entry1.get()
+    x2 = entry2.get()
+    label_sub = tk.Label(root, text = (round(float(x1)-float(x2))))
+    canvas1.create_window(435,110,window=label_sub)
+#############
+
+
+def Check(x3):
+    x1 = entry1.get()
+    x2 = entry2.get()
+    x3 = entry3.get()
+    if float(x1)*float(x2) == float(x3):
+        print('Correct')
+    else:
+        print("Not Correct")    
+        
+    label_check = tk.Label(root, text = (Check()))
+    canvas1.create_window(435,110,window=label_check)
+#STEP 4: Add the function buttons
+
+button2=tk.Button(text='+',command=get_Sum)
+canvas1.create_window(300,20,window=button2)
+
+button1=tk.Button(text='X',command=get_Product)
+canvas1.create_window(300,50,window=button1)
+
+button3=tk.Button(text='/',command=get_Quot)
+canvas1.create_window(300,80,window=button3)
+
+button4=tk.Button(text='-',command=get_Sub)
+canvas1.create_window(300,110,window=button4)
+
+button5=tk.Button(text='Check',command=Check)
+canvas1.create_window(300,200,window=button5)
+#######################################################################
+root.mainloop()
+```
