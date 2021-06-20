@@ -229,3 +229,107 @@ for q in questions.keys():
         print("Not quite")
 print("your score is " +str(score) + " out of "+str(c))
 ```
+
+
+## 4. Car on a slope, will it fall.
+### This code analyses the centre of mass and the wheelbase and determines whether or not the car will tumble when sat on a slope of ### a certain angle.
+### The student enters the values for centre of mass, wheelbase and slope angle (degrees).
+### The output will inform the student if the car stands or falls over.
+### A python Turtle graphic will show the car(box) on or off the slope as a reflection of the inputs.
+#### This input lets the car remain stable:
+[![boxslope.jpg](https://i.postimg.cc/BQFbtyw9/boxslope.jpg)](https://postimg.cc/zVJ8cdr0)
+#### Whereas an increase slope causes the car to fall, if the maximum angle is exceeded:
+[![boxfalls.jpg](https://i.postimg.cc/TP3Wy0DV/boxfalls.jpg)](https://postimg.cc/87xC9hwc)
+
+```
+import math as m
+c=      float(input("Centre of mass? "))
+w=      float(input("Wheelbase? "))
+#print(c)
+theta=  float(input("Angle of slope in degrees ? " ))
+
+def radian(theta):
+    return(theta*m.pi)/180
+phi=radian(theta)
+
+import turtle
+import math
+
+angle=phi*180/m.pi
+ash=turtle.Turtle()
+dist=100      
+    
+
+def stand(t,angle,dist):
+    #Horizontal
+    t.rt(180)
+    t.fd(dist)
+    #Hypoteneuse
+    t.rt(180-angle)
+    t.fd(dist/(m.cos(phi)))
+    
+    t.rt(90+angle)
+    t.fd(dist/(m.cos(phi))*m.sin(phi))
+    t.rt(180)
+    t.fd(dist/(m.cos(phi))*m.sin(phi))
+    #Back along hypoteneuse
+    t.lt(90+angle)
+    t.fd((1/3)*dist/(m.cos(phi)))
+    #Draw box
+    t.rt(90)
+    t.fd(10*2*c)
+    t.lt(90)
+    t.fd(2*10*w)
+    t.lt(90)
+    t.fd(10*2*c)
+   
+#stand(ash,angle,dist)
+
+def fall(t,angle,dist):
+    #Horizontal
+    t.rt(180)
+    t.fd(dist)
+    #Hypoteneuse
+    t.rt(180-angle)
+    t.fd(dist/(m.cos(phi)))
+    
+    t.rt(90+angle)
+    t.fd(dist/(m.cos(phi))*m.sin(phi))
+    t.rt(180)
+    t.fd(dist/(m.cos(phi))*m.sin(phi))
+    #Back along hypoteneuse
+    t.lt(90+angle)
+    t.fd(dist/(m.cos(phi)))
+    #Draw box
+    t.rt(angle)
+    t.fd(10*2*w)
+    t.rt(90)
+    t.fd(2*10*c)
+    t.rt(90)
+    t.fd(10*2*w)
+    t.rt(90)
+    t.fd(10*2*c)
+   
+#fall(ash,angle,dist)
+
+#print(phi)
+#print("Sine(phi) : ",m.sin(phi))
+#print ("Cos(phi) : ",m.cos(phi)) 
+
+
+if c*m.sin(phi)>((w/2)*m.cos(phi)):
+    print("Object Falls")
+    fall(ash,angle,dist)
+else: 
+    print("Object stands")
+    stand(ash,angle,dist)
+angmx = m.atan((w/2)/c)
+angmxdeg = (angmx/(m.pi)*180)
+
+print("Maximum angle is {} degrees".format(angmxdeg))
+```
+
+
+
+
+
